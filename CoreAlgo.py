@@ -1,7 +1,12 @@
 import random
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import math
+
+SEED = 42
+random.seed(SEED)
+np.random.seed(SEED)
 
 # --- 1. PROBLEM DEFINITION ---
 
@@ -98,15 +103,16 @@ def calculate_fitness(floorplan):
 
     # --- PENALTY WEIGHTS (THE KEY TO TUNING) ---
     # "Mortal Sins" - Hard Constraints. Must be high.
-    W_MIN_SIZE = 50.0
-    W_OVERLAP = 20.0
+    W_MIN_SIZE = 20.0
+    W_OVERLAP = 150.0
     W_BOUNDARY = 10.0
     
     # "Suggestions" - Soft Constraints.
     # We are making these much stronger now.
-    W_ADJACENCY = 5.0      # INCREASED: Make adjacency *very* important
-    W_ASPECT_RATIO = 4.0   # INCREASED: Make shape *very* important
-    W_WHITESPACE = 0.05    # DECREASED: Don't ossess over whitespace
+    W_ADJACENCY = 1.0      # INCREASED: Make adjacency *very* important
+    W_ASPECT_RATIO = 0.5   # INCREASED: Make shape *very* important
+    W_WHITESPACE = 0.1    # DECREASED: Don't ossess over whitespace
+
 
     # --- a) Boundary Penalty Calculation ---
     for room in floorplan.chromosome:
