@@ -1,2 +1,2 @@
 # GeneticAlgo
-Sem 5 AI Project
+Floor Optimization using Genetic Algorithms
